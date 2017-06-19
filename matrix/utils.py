@@ -47,7 +47,7 @@ def get_array_from_string(string, letter_spacing=1, wrap_spacing=4):
 
 
 def draw_string(string, reader=None, iterations=45):
-    whole_view = get_array_from_string(string)
+    whole_view = get_array_from_string(string.upper())
     draw_continuous_array(whole_view, iterations, reader)
 
 
@@ -58,7 +58,7 @@ def draw_continuous_array(array, iterations=16, reader=None):
             draw_array(partial_view)
         if reader and reader.poll():
             new_string = reader.recv()
-            array = get_array_from_string(new_string)
+            array = get_array_from_string(new_string.upper())
         else:
             for i, row in enumerate(array):
                 array[i] = row[1:] + row[0]

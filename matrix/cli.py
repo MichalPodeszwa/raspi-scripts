@@ -1,9 +1,10 @@
 import click
 import utils
 import multiprocessing
-from setup import initialize
+from init_pi import initialize
 import atexit
 from time import sleep
+from listeners import start_bluetooth_listener
 
 @click.group()
 def cli():
@@ -37,16 +38,21 @@ def demo():
     ])
 
 @cli.command()
-def start():
+@click.option('--bluetooth/--no-bluetooth', default=True)
+def start(bluetooth):
     r, w = multiprocessing.Pipe(duplex=False)
     p = multiprocessing.Process(target=utils.draw_string, args=("WAITING", r))
     p.start()
+
+    if bluetooth:
+        start_bluetooth_listener(w)
+
     while True:
         new_string = input("Type anything to change to new string...\t")
         w.send(new_string)
 
-atexit.register(utils.reset_matrix)
 
+atexit.register(utils.reset_matrix)
 if __name__ == '__main__':
     initialize()
     cli()
