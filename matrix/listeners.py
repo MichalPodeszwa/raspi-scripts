@@ -34,3 +34,9 @@ def start_bluetooth_listener(write_pipe):
     p.start()
     print("Started")
     return p
+
+
+def start_console_listener(write_pipe):
+    while True:
+        new_string = input("Type anything to change to new string...\t")
+        write_pipe.send(new_string)
