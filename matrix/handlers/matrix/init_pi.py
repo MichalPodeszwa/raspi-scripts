@@ -1,6 +1,5 @@
 import RPi.GPIO as IO
-from pins import input_pins, output_pins
-from utils import reset_matrix
+from . import input_pins, output_pins, reset_matrix
 
 def initialize():
     IO.setmode(IO.BOARD)

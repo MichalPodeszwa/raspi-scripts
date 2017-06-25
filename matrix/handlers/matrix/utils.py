@@ -1,8 +1,9 @@
 import RPi.GPIO as IO
-from pins import input_pins, output_pins
-from letters import letters
 from time import sleep
 import functools
+
+from . import input_pins, output_pins
+from .letters import letters
 
 def reset_matrix():
     for pin in input_pins:
@@ -10,10 +11,12 @@ def reset_matrix():
     for pin in output_pins:
         IO.output(pin, 1)
 
+
 def get_point_array(x, y):
-    array = [[0]*8 for _ in range(8)]
+    array = [[0] * 8 for _ in range(8)]
     array[y][x] = 1
     return array
+
 
 def get_array_from_string(string, letter_spacing=1, wrap_spacing=4):
     letters_array = [letters[letter] for letter in string]
