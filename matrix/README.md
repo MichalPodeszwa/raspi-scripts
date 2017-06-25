@@ -11,6 +11,7 @@ Everything is started as `python -m <module_name>`
 * `listeners.bluetooth` starts Bluetooth listener module, which sends data to one of the drawers
 * `listeners.web` starts json web server on 0.0.0.0:800, which sends data to one of the drawers
 * `listeners.console` starts a console view waiting for you to send commands, sending it to one of the drawers
+* `listeners.cli` starts a CLI which you can use to send commands. Help is available there
 
 You can enable all listeners at once.
 

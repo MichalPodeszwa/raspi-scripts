@@ -20,9 +20,9 @@ def start_listener():
     )
 
     print("Done")
-    client_sock, client_info = server_sock.accept()
+    client_socket, client_info = server_sock.accept()
     while True:
-        data = client_sock.recv(1024)
+        data = client_socket.recv(1024)
         if len(data) == 0:
             break
 
